@@ -17,6 +17,7 @@ document.querySelectorAll('.car').forEach(car => {
       currentSound.pause();
       currentSound.currentTime = 0;
     }
+    const sound = new Audio(`sonidos/${soundName}`);
     const newSound = new Audio(`sonidos/${soundName}.mp3`);
     newSound.play();
     currentSound = newSound;
