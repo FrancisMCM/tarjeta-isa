@@ -11,7 +11,22 @@ function stopCurrentSound() {
 
 document.querySelectorAll('.car').forEach(car => {
   const soundName = car.dataset.sound;
-  const sound = new Audio(`sonidos/${soundName}.mp3`);
+
+  function toggleCarSound() {
+    if (currentSound && !currentSound.paused) {
+      currentSound.pause();
+      currentSound.currentTime = 0;
+    }
+
+    const newSound = new Audio(`sonidos/${soundName}.mp3`);
+    newSound.play();
+    currentSound = newSound;
+    music.pause();
+  }
+
+  car.addEventListener('click', toggleCarSound);
+  car.addEventListener('touchstart', toggleCarSound);
+
 
   // Guardar el sonido como parte del elemento (opcional)
   car.dataset.soundInstance = sound;
